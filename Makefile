@@ -1,5 +1,11 @@
 build:
-	docker run --rm -v="$(PWD)/docs:/srv/jekyll:Z" -it jekyll/minimal:3.8 jekyll build
+	docker run --rm\
+		-v="$(PWD)/docs/vendor/bundle:/usr/local/bundle:Z" \
+		-v="$(PWD)/docs:/srv/jekyll:Z" \
+		-it jekyll/builder jekyll build
 
 staging:
-	docker run --rm -v="$(PWD)/docs:/srv/jekyll:Z" -it -p=4000:4000 jekyll/minimal:3.8 jekyll serve
+	docker run --rm\
+		-v="$(PWD)/docs/vendor/bundle:/usr/local/bundle:Z" \
+		-v="$(PWD)/docs:/srv/jekyll:Z" \
+		-it -p=4000:4000 jekyll/builder jekyll serve
