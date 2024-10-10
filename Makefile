@@ -1,11 +1,14 @@
 build:
 	docker run --rm\
-		-v="$(PWD)/docs/vendor/bundle:/usr/local/bundle:Z" \
 		-v="$(PWD)/docs:/srv/jekyll:Z" \
-		-it jekyll/builder jekyll build
+		-w "/srv/jekyll" \
+		--entrypoint="" \
+		-it ghcr.io/actions/jekyll-build-pages:v1.0.13 jekyll build
 
 staging:
 	docker run --rm\
-		-v="$(PWD)/docs/vendor/bundle:/usr/local/bundle:Z" \
 		-v="$(PWD)/docs:/srv/jekyll:Z" \
-		-it -p=4000:4000 jekyll/builder jekyll serve
+		-w "/srv/jekyll" \
+		-p=4000:4000 \
+		--entrypoint="" \
+		-it ghcr.io/actions/jekyll-build-pages:v1.0.13 jekyll serve --host=0.0.0.0
