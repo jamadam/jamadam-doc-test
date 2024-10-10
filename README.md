@@ -1,1 +1,4 @@
-# jamadam-doc-test
+# My Document
+
+make build
+make staging
